@@ -11,6 +11,8 @@ namespace ZombieParty2.Controllers
     {
         public IActionResult Index()
         {
+            #region Avec liste
+            /*
             ViewBag.MaListe = new List<Zombie>()
             {
                 new Zombie(){Name = "LeChuck", Type = "Fiction", Point = 5},
@@ -21,7 +23,9 @@ namespace ZombieParty2.Controllers
                 new Zombie(){Name = "chien de l'enfer", Type = "Fiction", Point = 7},
                 new Zombie(){Name = "Avogadro", Type = "Fiction", Point = 9}
             };
-            
+            */
+            #endregion
+
             return View();
         }
     }
