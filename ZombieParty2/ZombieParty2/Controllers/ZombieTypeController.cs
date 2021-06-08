@@ -25,5 +25,17 @@ namespace ZombieParty2.Controllers
         {
             return View();
         }
+
+        //POST CREATE
+        [HttpPost]
+        public IActionResult Create(ZombieType zombieType)
+        {
+            if (ModelState.IsValid)
+            {
+
+            }            
+            
+            return View(zombieType);
+        }
     }
 }
