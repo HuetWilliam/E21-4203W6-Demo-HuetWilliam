@@ -37,7 +37,7 @@ namespace ZombieParty2.Controllers
             if (ModelState.IsValid)
             {
 
-            }            
+            }
             
             return View(zombieType);
         }
