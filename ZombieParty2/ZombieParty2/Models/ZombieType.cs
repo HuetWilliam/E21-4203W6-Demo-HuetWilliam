@@ -15,5 +15,8 @@ namespace ZombieParty2.Models
         [Required(AllowEmptyStrings = false, ErrorMessage = "Type Name has to be fill.")]
         public string TypeName { get; set; }
 
+        [Range(2,5)]
+        public int Point { get; set; }
+
     }
 }

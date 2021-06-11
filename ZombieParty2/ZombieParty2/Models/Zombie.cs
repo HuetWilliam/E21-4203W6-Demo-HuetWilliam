@@ -19,12 +19,14 @@ namespace ZombieParty2.Models
         [Range(1, 10, ErrorMessage = "The point must be 1 to 10")]
         public int Point { get; set; }
 
-        //Cle etrangere
+        //Clé étrangère
         public int IdZombieType { get; set; }
 
         [ForeignKey("IdZombieType")]
         //Relation avec ZombieType
         public virtual ZombieType ZombieType { get; set; }
+
+        public string ShortDesc { get; set; }
 
     }
 }
