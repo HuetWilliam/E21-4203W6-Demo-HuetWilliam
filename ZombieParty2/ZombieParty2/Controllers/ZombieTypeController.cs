@@ -4,13 +4,22 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using ZombieParty2.Models;
+using ZombieParty2.Models.Data;
 
 namespace ZombieParty2.Controllers
 {
     public class ZombieTypeController : Controller
     {
+        private readonly ZombiePartyDbContext _db;
+
+        public ZombieTypeController(ZombiePartyDbContext db)
+        {
+            _db = db;
+        }
+
         public IActionResult Index()
         {
+            IEnumerable<ZombieType> objList = _db.ZombieType;
             #region Avec liste
             /*
             ViewBag.MaListe = new List<ZombieType>()
@@ -21,7 +30,7 @@ namespace ZombieParty2.Controllers
             */
             #endregion
 
-            return View();
+            return View(objList);
         }
 
         //GET CREATE
@@ -32,14 +41,13 @@ namespace ZombieParty2.Controllers
 
         //POST CREATE
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult Create(ZombieType zombieType)
         {
-            if (ModelState.IsValid)
-            {
+            _db.ZombieType.Add(zombieType);
+            _db.SaveChanges();
 
-            }
-            
-            return View(zombieType);
+            return RedirectToAction("Index");
         }
     }
 }
