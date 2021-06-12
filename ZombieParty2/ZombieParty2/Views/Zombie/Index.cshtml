@@ -1,13 +1,15 @@
-﻿<div class="container p-3">
+﻿@model IEnumerable<ZombieParty2.Models.Zombie>
+
+<div class="container p-3">
     <div class="row">
-        @foreach (var item in ViewBag.MaListe)
+        @foreach (var item in Model)
         {
-        <div href="#" class="card border m-3 text-center" style="width:20rem; background-image: url(~/wwwroot/images/imagesLayout/Fond.png);">
-            <div class="card-body text-warning">
-                <h3 class="card-title">@item.Name</h3>
-                <h5>@item.Point</h5>
+            <div href="#" class="card border m-3 text-center" style="width:20rem; background-image: url(~/wwwroot/images/imagesLayout/Fond.png);">
+                <div class="card-body text-warning">
+                    <h3 class="card-title">@item.Name</h3>
+                    <h5>@item.Point</h5>
+                </div>
             </div>
-        </div>
         }
     </div>
 </div>

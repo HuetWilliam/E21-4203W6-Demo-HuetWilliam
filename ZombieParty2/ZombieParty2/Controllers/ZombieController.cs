@@ -4,13 +4,22 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using ZombieParty2.Models;
+using ZombieParty2.Models.Data;
 
 namespace ZombieParty2.Controllers
 {
     public class ZombieController : Controller
     {
+        private readonly ZombiePartyDbContext _db;
+
+        public ZombieController(ZombiePartyDbContext db)
+        {
+            _db = db;
+        }
+
         public IActionResult Index()
         {
+            IEnumerable<Zombie> objList = _db.Zombie;
             #region Avec liste
             /*
             ViewBag.MaListe = new List<Zombie>()
@@ -27,6 +36,90 @@ namespace ZombieParty2.Controllers
             #endregion
 
             return View();
+        }
+
+        //GET CREATE
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        //POST CREATE
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Create(Zombie zombie)
+        {
+            _db.Zombie.Add(zombie);
+            _db.SaveChanges();
+
+            return RedirectToAction("Index");
+        }
+
+        //GET EDIT
+        public IActionResult Edit(int? id)
+        {
+            if (id == null || id == 0)
+            {
+                return NotFound();
+            }
+
+            var obj = _db.Zombie.Find(id);
+            if (obj == null)
+            {
+                return NotFound();
+            }
+
+            return View(obj);
+        }
+
+        //POST EDIT
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Edit(Zombie zombie)
+        {
+            if (ModelState.IsValid)
+            {
+                _db.Zombie.Update(zombie);
+                _db.SaveChanges();
+
+                return RedirectToAction("Index");
+            }
+            return View(zombie);
+        }
+
+        //GET DELETE
+        public IActionResult Delete(int? id)
+        {
+            if (id == null || id == 0)
+            {
+                return NotFound();
+            }
+
+            var obj = _db.Zombie.Find(id);
+            if (obj == null)
+            {
+                return NotFound();
+            }
+
+            return View(obj);
+        }
+
+        //POST DELETE
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult DeletePost(int? id)
+        {
+            var obj = _db.Zombie.Find(id);
+            if (obj == null)
+            {
+                return NotFound();
+            }
+
+            _db.Zombie.Remove(obj);
+            _db.SaveChanges();
+
+            return RedirectToAction("Index");
+
         }
     }
 }
