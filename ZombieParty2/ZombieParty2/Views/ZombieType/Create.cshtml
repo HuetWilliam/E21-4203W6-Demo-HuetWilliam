@@ -12,11 +12,21 @@
             <div class="col-8">
                 <div class="form-group row">
                     <div class="col-2">
-                        <label asp-for="TypeName"></label>
+                        <label asp-for="TypeName" class="form-label"></label>
                     </div>
                     <div class="col-8">
-                        <input asp-for="TypeName" class="form-control"/>
+                        <input asp-for="TypeName" class="form-control" />
                         <span asp-validation-for="TypeName" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-2">
+                        <label asp-for="Point" class="form-label"></label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="Point" class="form-control" />
+                        <span asp-validation-for="Point" class="text-danger"></span>
                     </div>
                 </div>
 
