@@ -35,7 +35,7 @@ namespace ZombieParty2.Controllers
             */
             #endregion
 
-            return View();
+            return View(objList);
         }
 
         //GET CREATE
