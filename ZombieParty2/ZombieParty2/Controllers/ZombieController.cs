@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using ZombieParty2.Models;
-using ZombieParty2.Models.Data;
+using ZombieParty2_DataAccess.Data;
 
 namespace ZombieParty2.Controllers
 {

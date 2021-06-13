@@ -19,4 +19,10 @@
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="5.0.2" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ZOmbieParty_DataAccess\ZombieParty_DataAccess.csproj" />
+    <ProjectReference Include="..\ZombieParty_Models\ZombieParty_Models.csproj" />
+    <ProjectReference Include="..\ZombieParty_Utility\ZombieParty_Utility.csproj" />
+  </ItemGroup>
+
 </Project>

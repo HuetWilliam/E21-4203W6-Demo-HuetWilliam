@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using ZombieParty2.Models.Data;
+using ZombieParty2_DataAccess.Data;
 
 namespace ZombieParty2
 {
