@@ -9,8 +9,8 @@ using ZombieParty2_DataAccess.Data;
 namespace ZombieParty2.Migrations
 {
     [DbContext(typeof(ZombiePartyDbContext))]
-    [Migration("20210611194054_AjoutHuntingLog")]
-    partial class AjoutHuntingLog
+    [Migration("20210622161716_MdfTypeName")]
+    partial class MdfTypeName
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -19,6 +19,25 @@ namespace ZombieParty2.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.7")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("ZombieParty2.Models.HuntingLog", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("HuntingLog");
+                });
 
             modelBuilder.Entity("ZombieParty2.Models.Zombie", b =>
                 {
@@ -36,6 +55,9 @@ namespace ZombieParty2.Migrations
 
                     b.Property<int>("Point")
                         .HasColumnType("int");
+
+                    b.Property<string>("ShortDesc")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -56,7 +78,8 @@ namespace ZombieParty2.Migrations
 
                     b.Property<string>("TypeName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
 
                     b.HasKey("Id");
 

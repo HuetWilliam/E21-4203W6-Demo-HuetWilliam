@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using ZombieParty2.Models.Data;
+using ZombieParty2_DataAccess.Data;
 
 namespace ZombieParty2.Migrations
 {
@@ -47,9 +47,14 @@ namespace ZombieParty2.Migrations
                     b.Property<int>("IdZombieType")
                         .HasColumnType("int");
 
+                    b.Property<string>("Image")
+                        .HasMaxLength(60)
+                        .HasColumnType("nvarchar(60)");
+
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(25)
+                        .HasColumnType("nvarchar(25)");
 
                     b.Property<int>("Point")
                         .HasColumnType("int");
@@ -76,7 +81,8 @@ namespace ZombieParty2.Migrations
 
                     b.Property<string>("TypeName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
 
                     b.HasKey("Id");
 

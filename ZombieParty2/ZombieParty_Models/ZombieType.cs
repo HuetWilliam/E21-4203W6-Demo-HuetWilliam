@@ -14,6 +14,7 @@ namespace ZombieParty2.Models
 
         [DisplayName("Type Name")]
         [Required(AllowEmptyStrings = false, ErrorMessage = "Type Name has to be fill.")]
+        [MaxLength(20, ErrorMessage = "The Name must have less than 20 caracters.")]
         public string TypeName { get; set; }
 
         [Required]

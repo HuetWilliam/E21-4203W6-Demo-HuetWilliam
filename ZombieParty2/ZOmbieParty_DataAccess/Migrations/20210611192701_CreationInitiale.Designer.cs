@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using ZombieParty2.Models.Data;
+using ZombieParty2_DataAccess.Data;
 
 namespace ZombieParty2.Migrations
 {
