@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using ZombieParty_DataAccess.Repository.IRepository;
+using ZombieParty_Models.ViewModels;
 using ZombieParty2.Models;
 using ZombieParty2_DataAccess.Data;
 
@@ -12,31 +13,23 @@ namespace ZombieParty2.Controllers
     public class ZombieController : Controller
     {
         private readonly IRepositoryZombie _zombieRepo;
+        private readonly IRepositoryZombieType _zombieTypeRepo;
 
-        public ZombieController(IRepositoryZombie db)
+        public ZombieController(IRepositoryZombie zombieRepo, IRepositoryZombieType zombieTypeRepo)
         {
-            _zombieRepo = db;
+            _zombieRepo = zombieRepo;
+            _zombieTypeRepo = zombieTypeRepo;
         }
 
         public IActionResult Index()
         {
-            IEnumerable<Zombie> objList = _zombieRepo.GetAll();
-            #region Avec liste
-            /*
-            ViewBag.MaListe = new List<Zombie>()
+            ZombieCardVM zombieCardVM = new ZombieCardVM()
             {
-                new Zombie(){Name = "LeChuck", Type = "Fiction", Point = 5},
-                new Zombie(){Name = "Lenore", Type = "Fiction", Point = 4},
-                new Zombie(){Name = "Draugr", Type = "Légendraire", Point = 2},
-                new Zombie(){Name = "Ragamuffin", Type = "Légendraire", Point = 5},
-                new Zombie(){Name = "Taxidermy", Type = "Légendraire", Point = 1},
-                new Zombie(){Name = "chien de l'enfer", Type = "Fiction", Point = 7},
-                new Zombie(){Name = "Avogadro", Type = "Fiction", Point = 9}
+                Zombie = _zombieRepo.GetAll(includeProperties: "ZombieType"),
+                ZombieType = _zombieTypeRepo.GetAll()
             };
-            */
-            #endregion
-
-            return View(objList);
+            
+            return View(zombieCardVM);
         }
 
         //GET CREATE
