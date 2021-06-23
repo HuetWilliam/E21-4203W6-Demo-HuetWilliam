@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ZombieParty_DataAccess.Repository.IRepository;
 using ZombieParty2.Models;
 using ZombieParty2_DataAccess.Data;
 
@@ -10,16 +11,16 @@ namespace ZombieParty2.Controllers
 {
     public class ZombieController : Controller
     {
-        private readonly ZombiePartyDbContext _db;
+        private readonly IRepositoryZombie _zombieRepo;
 
-        public ZombieController(ZombiePartyDbContext db)
+        public ZombieController(IRepositoryZombie db)
         {
-            _db = db;
+            _zombieRepo = db;
         }
 
         public IActionResult Index()
         {
-            IEnumerable<Zombie> objList = _db.Zombie;
+            IEnumerable<Zombie> objList = _zombieRepo.GetAll();
             #region Avec liste
             /*
             ViewBag.MaListe = new List<Zombie>()
@@ -49,8 +50,8 @@ namespace ZombieParty2.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Create(Zombie zombie)
         {
-            _db.Zombie.Add(zombie);
-            _db.SaveChanges();
+            _zombieRepo.Add(zombie);
+            _zombieRepo.Save();
 
             return RedirectToAction("Index");
         }
@@ -63,7 +64,7 @@ namespace ZombieParty2.Controllers
                 return NotFound();
             }
 
-            var obj = _db.Zombie.Find(id);
+            var obj = _zombieRepo.Find(id);
             if (obj == null)
             {
                 return NotFound();
@@ -79,8 +80,8 @@ namespace ZombieParty2.Controllers
         {
             if (ModelState.IsValid)
             {
-                _db.Zombie.Update(zombie);
-                _db.SaveChanges();
+                _zombieRepo.Update(zombie);
+                _zombieRepo.Save();
 
                 return RedirectToAction("Index");
             }
@@ -95,7 +96,7 @@ namespace ZombieParty2.Controllers
                 return NotFound();
             }
 
-            var obj = _db.Zombie.Find(id);
+            var obj = _zombieRepo.Find(id);
             if (obj == null)
             {
                 return NotFound();
@@ -109,14 +110,14 @@ namespace ZombieParty2.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult DeletePost(int? id)
         {
-            var obj = _db.Zombie.Find(id);
+            var obj = _zombieRepo.Find(id);
             if (obj == null)
             {
                 return NotFound();
             }
 
-            _db.Zombie.Remove(obj);
-            _db.SaveChanges();
+            _zombieRepo.Remove(obj);
+            _zombieRepo.Save();
 
             return RedirectToAction("Index");
 

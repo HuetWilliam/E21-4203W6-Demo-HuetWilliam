@@ -9,6 +9,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using ZombieParty_DataAccess.Repository;
+using ZombieParty_DataAccess.Repository.IRepository;
 using ZombieParty2_DataAccess.Data;
 
 namespace ZombieParty2
@@ -28,6 +30,11 @@ namespace ZombieParty2
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
 
             services.AddDbContext<ZombiePartyDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+
+            services.AddScoped<IRepositoryZombie, RepositoryZombie>();
+
+            services.AddScoped<IRepositoryZombieType, RepositoryZombieType>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
